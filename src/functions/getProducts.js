@@ -6,7 +6,7 @@ const sanity = sanityClient({
   projectId: process.env.SANITY_PROJECT_ID,
   dataset: process.env.SANITY_DATASET,
   token: process.env.SANITY_TOKEN,
-  useCdn: true
+  useCdn: false
 });
 
 exports.handler = (event, context, callback) => {
@@ -18,8 +18,7 @@ exports.handler = (event, context, callback) => {
         name: x.title,
         url: `${process.env.URL}/.netlify/functions/getProducts`,
         price: x.defaultProductVariant.price,
-        description: x.blurb.en,
-        body: blocksToHtml({blocks: x.body.en}),
+        
       }
 
       const image = x.defaultProductVariant.images && x.defaultProductVariant.images.length > 0
